@@ -4,11 +4,11 @@ Knightshift is a two-player strategy game on a 5×8 board, inspired by chess. Ea
 
 The game is written in C. It comes with three computer opponents, a browser UI served by a small HTTP server (also in C) and a terminal version. Nothing needs to be installed beyond a C compiler.
 
-![Knightshift in the browser](docs/screenshot.png)
-
 ## Demo
 
-<!-- Demo video goes here -->
+[![Knightshift demo: click to watch the video](docs/screenshot.png)](docs/knightshift-demo-vid.mp4)
+
+▶ **[Watch the demo video](docs/knightshift-demo-vid.mp4)**
 
 ---
 
