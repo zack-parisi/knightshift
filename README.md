@@ -351,11 +351,26 @@ The decision tree doesn't search far ahead. It checks a fixed list of questions 
 
 Rules 3 to 9 never pick an action that lets the opponent win on the next turn, unless every action does.
 
-The tree takes under a millisecond per move, and every decision comes with a plain-English reason, which the UI shows. Against the other bots:
-- it wins every game against the random bot,
-- it loses to a depth-5 minimax search.
+The tree takes under a millisecond per move, and every decision comes with a plain-English reason, which the UI shows.
 
-This is a useful comparison of hand-written knowledge versus search.
+### How the bots compare
+
+Results of bot-vs-bot games (depth 5 for minimax; a game with no winner after 300 moves counts as no result):
+
+| White | Black | Result |
+|---|---|---|
+| Decision tree | Random | Decision tree wins (every game tested) |
+| Decision tree | Minimax · material | Minimax wins by captures |
+| Minimax · material | Decision tree | **Decision tree wins** with two fortresses |
+| Decision tree | Minimax · positional | No result |
+| Minimax · positional | Decision tree | No result |
+| Minimax · material | Minimax · positional | No result |
+
+Neither bot is strictly better, and the reasons are useful:
+- **Minimax with the material evaluation** is tactically sharp. It never leaves a knight hanging and punishes the tree's mistakes. But the material score gives no credit for advancing, so when nothing can be captured within its search depth, it wanders. The tree marches its knights forward and fortifies before minimax sees the danger: a classic *horizon effect*.
+- **The positional evaluation** fixes the wandering but plays so cautiously that games against the tree go nowhere.
+
+Improving this is the obvious next step: give the evaluation a bonus for knight advancement, or add a quiescence search.
 
 ### 3. Random
 
